@@ -1,5 +1,8 @@
 package com.codeclan.example.pirateservice.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +31,8 @@ public class Pirate {
 
 
     @ManyToMany
+    @JsonIgnoreProperties({"pirates"})
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinTable(
             name = "pirates_raids",
             joinColumns = {@JoinColumn(
@@ -39,16 +44,16 @@ public class Pirate {
                     name = "raid_id",
                     nullable = false,
                     updatable = false)
-                }
-            )
-    private ArrayList<Raid> raids;
+            }
+    )
+    private List<Raid> raids;
 
     public Pirate(String firstName, String lastName, int age, Ship ship) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
         this.ship = ship;
-        this.raids = new ArrayList<Raid>();
+        this.raids = new ArrayList<>();
     }
 
     public Pirate() {
@@ -94,11 +99,6 @@ public class Pirate {
     public void setShip(Ship ship) {
         this.ship = ship;
     }
-
-    public ArrayList<Raid> getRaids() {
-        return raids;
-    }
-
 
     public void addRaid(Raid raid) {
         this.raids.add(raid);

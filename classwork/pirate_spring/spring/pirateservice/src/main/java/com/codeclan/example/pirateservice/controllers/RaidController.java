@@ -20,7 +20,7 @@ public class RaidController {
     public List<Raid> getAllRaids() {
         return raidRepository.findAll();
     }
-    
+
     @GetMapping(value = "/raids/{id}")
     public Optional<Raid> getRaid(@PathVariable Long id) {
         return raidRepository.findById(id);

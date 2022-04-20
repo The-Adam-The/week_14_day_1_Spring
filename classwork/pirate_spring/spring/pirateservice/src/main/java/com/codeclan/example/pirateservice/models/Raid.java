@@ -37,12 +37,12 @@ public class Raid {
                         updatable = false)
                 }
             )
-    private ArrayList<Pirate> pirates;
+    private List<Pirate> pirates;
 
     public Raid(String location, int loot) {
         this.location = location;
         this.loot = loot;
-        this.pirates = new ArrayList<Pirate>();
+        this.pirates = new ArrayList<>();
     }
 
     public Raid() {
@@ -73,9 +73,6 @@ public class Raid {
         this.loot = loot;
     }
 
-    public ArrayList<Pirate> getPirates() {
-        return pirates;
-    }
 
     public void addPirate(Pirate pirate){
         this.pirates.add(pirate);
